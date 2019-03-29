@@ -105,7 +105,7 @@ RUN cd / && \
 
 
 # Autodetect packages needed for the examples (will install from CRAN)
-RUN R -e "install.packages(packrat:::dirDependencies('/shiny-examples'))"
+RUN R -e "install.packages(setdiff(packrat:::dirDependencies('/srv/shiny-server'), rownames(installed.packages())))"
 
 # Packages that need to be installed from GitHub
 # For 087-crandash
@@ -119,8 +119,7 @@ RUN R -e "devtools::install_github('rstudio/rsconnect')"
 RUN R -e 'devtools::install_github("rstudio/websocket")'
 RUN R -e 'devtools::install_github("rstudio/DT")'
 RUN R -e 'devtools::install_github("r-lib/scales")'
-RUN R -e 'devtools::install_github("rstudio/httpuv@rc-v1.5.0")'
-RUN R -e 'devtools::install_github("rstudio/reactlog@rc-v1.0.0", dependencies = FALSE)'
+RUN R -e 'devtools::install_github("rstudio/httpuv@rc-v1.5.1")'
 RUN R -e 'devtools::install_github("rstudio/shiny@rc-v1.3.0")'
 
 
